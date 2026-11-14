@@ -23,3 +23,14 @@ if [ "${TOGGLE_DAEMON:-1}" = "1" ] && [ -f "$MODDIR/daemon.sh" ]; then
     nohup sh "$MODDIR/daemon.sh" > /dev/null 2>&1 &
     echo "[$(date)] Background Daemon started." >> "$LOGFILE"
 fi
+
+# Tunggu hingga layar dibuka (User CE Unlocked) pada Android 16
+until [ "$(getprop sys.user.0.ce_available)" = "true" ]; do
+    sleep 2
+done
+sleep 5
+
+pm grant com.android.shell android.permission.POST_NOTIFICATIONS 2>/dev/null
+cmd appops set com.android.shell POST_NOTIFICATION allow 2>/dev/null
+
+su -lp 2000 -c "cmd notification post -S bigtext -t 'ChargeGuard AllProject' 'cg_boot_a16' 'ChargeGuard v1.1 Aktif • Auto Game Bypass & Anti-Ghost Touch Siaga'" >/dev/null 2>&1
