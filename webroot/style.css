@@ -1,12 +1,13 @@
 :root {
     --bg-color: #0b0f19;
-    --card-bg: rgba(17, 24, 39, 0.7);
-    --border-color: rgba(59, 130, 246, 0.2);
+    --card-bg: rgba(17, 24, 39, 0.75);
+    --border-color: rgba(59, 130, 246, 0.25);
     --accent-color: #3b82f6;
-    --accent-glow: rgba(59, 130, 246, 0.4);
+    --accent-glow: rgba(59, 130, 246, 0.45);
     --text-primary: #f3f4f6;
     --text-secondary: #9ca3af;
     --success-color: #10b981;
+    --danger-color: #ef4444;
 }
 
 * {
@@ -27,13 +28,13 @@ body {
 
 .glow-bg {
     position: fixed;
-    top: -50px;
+    top: -60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
+    width: 340px;
+    height: 340px;
     background: var(--accent-glow);
-    filter: blur(120px);
+    filter: blur(130px);
     z-index: -1;
 }
 
@@ -41,9 +42,9 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: rgba(11, 15, 25, 0.8);
-    backdrop-filter: blur(10px);
+    padding: 18px 20px;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -57,12 +58,13 @@ header {
 }
 
 .logo i {
-    font-size: 28px;
+    font-size: 26px;
     color: var(--accent-color);
+    text-shadow: 0 0 12px var(--accent-glow);
 }
 
 .logo h1 {
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 1px;
     font-weight: 700;
 }
@@ -70,7 +72,7 @@ header {
 .badge {
     font-size: 10px;
     background: rgba(59, 130, 246, 0.2);
-    color: var(--accent-color);
+    color: #60a5fa;
     padding: 2px 8px;
     border-radius: 20px;
     font-weight: 600;
@@ -80,18 +82,18 @@ header {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 6px 10px;
     border-radius: 20px;
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 185, 129, 0.12);
     color: var(--success-color);
-    border: 1px solid rgba(16, 185, 129, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.25);
 }
 
 .status-indicator .dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     background: var(--success-color);
     border-radius: 50%;
     box-shadow: 0 0 8px var(--success-color);
@@ -100,23 +102,26 @@ header {
 .nav-tabs {
     display: flex;
     padding: 15px 20px 0 20px;
-    gap: 10px;
+    gap: 8px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .tab-btn {
     flex: 1;
-    background: rgba(31, 41, 55, 0.5);
+    background: rgba(31, 41, 55, 0.55);
     border: 1px solid var(--border-color);
     color: var(--text-secondary);
-    padding: 12px;
+    padding: 11px 8px;
     border-radius: 12px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .tab-btn.active {
@@ -127,14 +132,14 @@ header {
 }
 
 .container {
-    padding: 20px;
+    padding: 18px 20px;
     max-width: 600px;
     margin: 0 auto;
 }
 
 .tab-content {
     display: none;
-    animation: fadeIn 0.3s ease;
+    animation: fadeIn 0.25s ease;
 }
 
 .tab-content.active {
@@ -150,40 +155,71 @@ header {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 18px;
+    margin-bottom: 18px;
     backdrop-filter: blur(10px);
 }
 
 .card h2 {
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
     color: var(--text-secondary);
-    margin-bottom: 15px;
+    margin-bottom: 14px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-/* Telemetry Grid Styles */
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.card-header-row h2 {
+    margin-bottom: 0;
+}
+
+.mini-action-btn {
+    background: rgba(59, 130, 246, 0.18);
+    border: 1px solid var(--accent-color);
+    color: #93c5fd;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.mini-action-btn:active {
+    transform: scale(0.96);
+    background: var(--accent-color);
+    color: white;
+}
+
 .telemetry-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 10px;
 }
 
 .telemetry-item {
-    background: rgba(31, 41, 55, 0.4);
+    background: rgba(31, 41, 55, 0.45);
     border: 1px solid var(--border-color);
-    padding: 12px;
+    padding: 11px;
     border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .telemetry-item i {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--accent-color);
 }
 
@@ -194,13 +230,12 @@ header {
 }
 
 .telemetry-item .t-value {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 700;
     color: var(--text-primary);
-    word-break: break-all;
+    word-break: break-word;
 }
 
-/* Mode Grid */
 .mode-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -208,13 +243,13 @@ header {
 }
 
 .mode-card {
-    background: rgba(31, 41, 55, 0.4);
+    background: rgba(31, 41, 55, 0.45);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 15px 10px;
+    padding: 14px 8px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     color: var(--text-primary);
 }
 
@@ -225,7 +260,7 @@ header {
 }
 
 .mode-card h3 {
-    font-size: 11px;
+    font-size: 10.5px;
     margin-bottom: 4px;
 }
 
@@ -235,49 +270,49 @@ header {
 }
 
 .mode-card.active {
-    background: rgba(59, 130, 246, 0.15);
+    background: rgba(59, 130, 246, 0.18);
     border-color: var(--accent-color);
-    box-shadow: 0 0 12px var(--accent-glow);
+    box-shadow: 0 0 14px var(--accent-glow);
 }
 
 .mode-card.active i {
     color: var(--accent-color);
 }
 
-/* Toggle List */
 .toggle-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .toggle-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(31, 41, 55, 0.3);
-    padding: 12px 15px;
+    background: rgba(31, 41, 55, 0.35);
+    padding: 12px 14px;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    gap: 12px;
 }
 
 .toggle-item strong {
-    font-size: 13px;
+    font-size: 12.5px;
     display: block;
     margin-bottom: 2px;
 }
 
 .toggle-item p {
-    font-size: 11px;
+    font-size: 10.5px;
     color: var(--text-secondary);
 }
 
-/* Switch UI */
 .switch {
     position: relative;
     display: inline-block;
     width: 44px;
     height: 24px;
+    flex-shrink: 0;
 }
 
 .switch input {
@@ -309,27 +344,91 @@ header {
 
 input:checked + .slider {
     background-color: var(--accent-color);
-    box-shadow: 0 0 8px var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
 }
 
 input:checked + .slider:before {
     transform: translateX(20px);
 }
 
-/* Terminal Styles */
-.terminal-quick-bar {
+.section-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.game-add-bar {
     display: flex;
     gap: 8px;
+    margin-bottom: 14px;
+}
+
+.game-add-bar input {
+    flex: 1;
+    background: rgba(31, 41, 55, 0.5);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: white;
+    font-size: 12px;
+    outline: none;
+}
+
+.game-add-bar button {
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    padding: 0 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.game-list-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.game-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(31, 41, 55, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-family: monospace;
+}
+
+.game-del-btn {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: var(--danger-color);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.terminal-quick-bar {
+    display: flex;
+    gap: 6px;
     margin-bottom: 12px;
     overflow-x: auto;
     padding-bottom: 4px;
 }
 
 .terminal-quick-bar button {
-    background: rgba(31, 41, 55, 0.6);
+    background: rgba(31, 41, 55, 0.65);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
     font-size: 11px;
     cursor: pointer;
@@ -341,11 +440,12 @@ input:checked + .slider:before {
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 12px;
-    height: 250px;
+    height: 260px;
     overflow-y: auto;
     font-family: monospace;
     font-size: 11px;
     margin-bottom: 12px;
+    white-space: pre-wrap;
 }
 
 .term-line {
@@ -359,7 +459,7 @@ input:checked + .slider:before {
 .terminal-input-bar {
     display: flex;
     align-items: center;
-    background: rgba(31, 41, 55, 0.4);
+    background: rgba(31, 41, 55, 0.45);
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 6px 12px;
@@ -390,27 +490,27 @@ input:checked + .slider:before {
     cursor: pointer;
 }
 
-/* Toast */
 .toast-notification {
     position: fixed;
-    bottom: -50px;
+    bottom: -60px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(17, 24, 39, 0.95);
-    border: 1px solid var(--border-color);
-    padding: 10px 20px;
+    background: rgba(17, 24, 39, 0.96);
+    border: 1px solid var(--accent-color);
+    padding: 10px 18px;
     border-radius: 30px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-size: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
     transition: bottom 0.3s ease;
     z-index: 1000;
+    white-space: nowrap;
 }
 
 .toast-notification.show {
-    bottom: 25px;
+    bottom: 24px;
 }
 
 .toast-notification i {

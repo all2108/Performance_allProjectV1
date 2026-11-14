@@ -1,7 +1,7 @@
 id=performance_allproject
 name=Performance AllProject
-version=1.0
-versionCode=1
+version=v2.0
+versionCode=200
 author=AllProject
-description=Modul kustom performa dan pengatur frekuensi CPU/GPU MediaTek
-updateJson=https://raw.githubusercontent.com/u/Performance_allProjectV1/main/performance_update.json
+description=Advanced MediaTek & Android Performance Engine, Auto-Game Booster, Thermal Guard & KernelSU WebUI
+updateJson=https://raw.githubusercontent.com/all2108/Performance_allProjectV1/main/performance_update.json

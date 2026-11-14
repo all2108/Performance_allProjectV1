@@ -15,18 +15,21 @@
             <i class="fa-solid fa-microchip"></i>
             <div>
                 <h1>PERFORMANCE ALLPROJECT</h1>
-                <span class="badge">v2.0 • PRO EDITION</span>
+                <span class="badge">v2.0 • PRO ENGINE</span>
             </div>
         </div>
         <div class="status-indicator online" id="sys-status">
             <span class="dot"></span>
-            <span id="sys-status-text">SYSTEM ACTIVE</span>
+            <span id="sys-status-text">ROOT ACTIVE</span>
         </div>
     </header>
 
     <nav class="nav-tabs">
         <button class="tab-btn active" id="tab-dashboard-btn" onclick="switchTab('dashboard')">
             <i class="fa-solid fa-gauge-high"></i> Dashboard
+        </button>
+        <button class="tab-btn" id="tab-games-btn" onclick="switchTab('games')">
+            <i class="fa-solid fa-gamepad"></i> Game List
         </button>
         <button class="tab-btn" id="tab-terminal-btn" onclick="switchTab('terminal')">
             <i class="fa-solid fa-terminal"></i> Terminal
@@ -36,130 +39,166 @@
     <main class="container">
         <!-- TAB 1: DASHBOARD -->
         <div id="tab-dashboard" class="tab-content active">
-            <!-- LIVE TELEMETRY CARD -->
             <section class="card telemetry-card">
-                <h2><i class="fa-solid fa-heart-pulse"></i> LIVE HARDWARE TELEMETRY</h2>
+                <div class="card-header-row">
+                    <h2><i class="fa-solid fa-heart-pulse"></i> LIVE HARDWARE TELEMETRY</h2>
+                    <button class="mini-action-btn" onclick="cleanRamNow()">
+                        <i class="fa-solid fa-broom"></i> Boost RAM
+                    </button>
+                </div>
                 <div class="telemetry-grid">
                     <div class="telemetry-item">
                         <i class="fa-solid fa-bolt-lightning"></i>
                         <div>
-                            <span class="t-label">CPU Governor</span>
-                            <span class="t-value" id="telemetry-gov">Checking...</span>
+                            <span class="t-label">CPU Gov & Clock</span>
+                            <span class="t-value" id="telemetry-gov">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-item">
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <div>
+                            <span class="t-label">Temp & Battery</span>
+                            <span class="t-value" id="telemetry-temp">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-item">
+                        <i class="fa-solid fa-memory"></i>
+                        <div>
+                            <span class="t-label">Available RAM</span>
+                            <span class="t-value" id="telemetry-ram">Loading...</span>
                         </div>
                     </div>
                     <div class="telemetry-item">
                         <i class="fa-solid fa-hard-drive"></i>
                         <div>
                             <span class="t-label">I/O Scheduler</span>
-                            <span class="t-value" id="telemetry-io">Checking...</span>
+                            <span class="t-value" id="telemetry-io">Loading...</span>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- PERFORMANCE PROFILE -->
             <section class="card">
                 <h2><i class="fa-solid fa-sliders"></i> PERFORMANCE PROFILE</h2>
                 <div class="mode-grid">
                     <button class="mode-card" onclick="setMode('batterysaver')" id="mode-batterysaver">
                         <i class="fa-solid fa-leaf"></i>
                         <h3>EXTREME SAVER</h3>
-                        <p>Max Power Saving & Low Temp</p>
+                        <p>Powersave + Doze Idle</p>
                     </button>
                     <button class="mode-card" onclick="setMode('balanced')" id="mode-balanced">
                         <i class="fa-solid fa-scale-balanced"></i>
                         <h3>BALANCED</h3>
-                        <p>Stock Daily Usage</p>
+                        <p>Schedutil Daily Smooth</p>
                     </button>
                     <button class="mode-card active" onclick="setMode('performance')" id="mode-performance">
                         <i class="fa-solid fa-bolt"></i>
                         <h3>PERFORMANCE</h3>
-                        <p>Max CPU/GPU & Low Latency</p>
+                        <p>Max Clocks & Low Latency</p>
                     </button>
                 </div>
             </section>
 
-            <!-- FEATURE TOGGLES -->
             <section class="card">
-                <h2><i class="fa-solid fa-toggle-on"></i> FEATURE TOGGLES</h2>
+                <h2><i class="fa-solid fa-toggle-on"></i> KERNEL & SYSTEM TWEAKS</h2>
                 <div class="toggle-list">
                     <div class="toggle-item">
                         <div>
-                            <strong>CPU Governor Lock</strong>
-                            <p>Force CPU to performance governor</p>
+                            <strong>CPU Governor & Clock Lock</strong>
+                            <p>Lock performance governor & raise min frequency</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-cpu" checked onchange="toggleFeature('cpu', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_CPU" checked onchange="toggleFeature('TOGGLE_CPU', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>GPU Mali High-Speed</strong>
-                            <p>Unlock GPU max frequency & power policy</p>
+                            <strong>MediaTek GED & GPU Mali Boost</strong>
+                            <p>Enable gx_game_mode, gx_boost_on & always_on policy</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-gpu" checked onchange="toggleFeature('gpu', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_GPU" checked onchange="toggleFeature('TOGGLE_GPU', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>Touch Sampling Boost</strong>
-                            <p>Enable high-sensitivity touch sampling</p>
+                            <strong>MediaTek PPM Power Unlocker</strong>
+                            <p>Disable PWR_THRO & FORCE_LIMIT throttling policies</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-touch" checked onchange="toggleFeature('touch', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_PPM" checked onchange="toggleFeature('TOGGLE_PPM', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>TCP Network Optimizer</strong>
-                            <p>Optimize buffer network for gaming ping</p>
+                            <strong>Touch Sampling & Game Switch</strong>
+                            <p>Boost touchpanel polling rate for ultra-fast response</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-tcp" checked onchange="toggleFeature('tcp', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_TOUCH" checked onchange="toggleFeature('TOGGLE_TOUCH', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>RAM & LMK Optimizer</strong>
-                            <p>Tune virtual memory & prevent background reloads</p>
+                            <strong>TCP BBR & Gaming Ping Optimizer</strong>
+                            <p>Enable BBR congestion control & FastOpen</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-ram" checked onchange="toggleFeature('ram', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_TCP" checked onchange="toggleFeature('TOGGLE_TCP', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>Game Turbo Priority</strong>
-                            <p>Boost foreground process priority & CPU affinity</p>
+                            <strong>RAM & Virtual Memory Optimizer</strong>
+                            <p>Tune swappiness, cache pressure & dirty ratios</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-turbo" checked onchange="toggleFeature('turbo', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_RAM" checked onchange="toggleFeature('TOGGLE_RAM', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>Refresh Rate Unlocker</strong>
-                            <p>Force display to maximum Hz for buttery smooth gaming</p>
+                            <strong>Uclamp & Game Turbo Priority</strong>
+                            <p>Boost top-app uclamp.min & latency_sensitive</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-fps" checked onchange="toggleFeature('fps', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_TURBO" checked onchange="toggleFeature('TOGGLE_TURBO', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
                     <div class="toggle-item">
                         <div>
-                            <strong>I/O & Storage Speed Booster</strong>
-                            <p>Optimize storage scheduler & increase read-ahead buffer</p>
+                            <strong>Refresh Rate Unlocker (Max Hz)</strong>
+                            <p>Force peak display Hz & SurfaceFlinger unsignaled latch</p>
                         </div>
                         <label class="switch">
-                            <input type="checkbox" id="toggle-io" checked onchange="toggleFeature('io', this.checked)">
+                            <input type="checkbox" id="toggle-TOGGLE_FPS" checked onchange="toggleFeature('TOGGLE_FPS', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <div>
+                            <strong>I/O & Storage Read-Ahead Booster</strong>
+                            <p>Set optimal scheduler & 2048KB read-ahead buffer</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-TOGGLE_IO" checked onchange="toggleFeature('TOGGLE_IO', this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <div>
+                            <strong>Auto-Game Daemon & Thermal Guard</strong>
+                            <p>Auto-boost games, live temp notif & 46°C cooldown guard</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="toggle-TOGGLE_DAEMON" checked onchange="toggleFeature('TOGGLE_DAEMON', this.checked)">
                             <span class="slider"></span>
                         </label>
                     </div>
@@ -167,30 +206,45 @@
             </section>
         </div>
 
-        <!-- TAB 2: TERMINAL -->
+        <!-- TAB 2: AUTO-GAME WHITELIST MANAGER -->
+        <div id="tab-games" class="tab-content">
+            <section class="card">
+                <h2><i class="fa-solid fa-gamepad"></i> AUTO-GAME BOOST WHITELIST</h2>
+                <p class="section-desc">Paket game di bawah ini otomatis memicu mode Performance saat dibuka di layar utama.</p>
+                <form class="game-add-bar" onsubmit="addGamePackage(event)">
+                    <input type="text" id="new-game-pkg" placeholder="Contoh: com.miHoYo.GenshinImpact" autocomplete="off">
+                    <button type="submit"><i class="fa-solid fa-plus"></i> Tambah</button>
+                </form>
+                <div class="game-list-box" id="game-list-container">
+                    <div class="term-line info">Memuat daftar game...</div>
+                </div>
+            </section>
+        </div>
+
+        <!-- TAB 3: TERMINAL -->
         <div id="tab-terminal" class="tab-content">
             <section class="card">
                 <h2><i class="fa-solid fa-code"></i> KERNELSU ROOT TERMINAL</h2>
                 <div class="terminal-quick-bar">
                     <button onclick="runQuickCmd('cat /data/local/tmp/perf_allproject.log')">Check Log</button>
-                    <button onclick="runQuickCmd('cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor')">CPU Gov</button>
-                    <button onclick="runQuickCmd('cat /sys/block/sda/queue/scheduler')">I/O Scheduler</button>
+                    <button onclick="runQuickCmd('cat /proc/ppm/policy_status')">PPM Status</button>
+                    <button onclick="runQuickCmd('cat /dev/cpuctl/top-app/cpu.uclamp.min')">Uclamp</button>
+                    <button onclick="runQuickCmd('ps -ef | grep daemon.sh')">Daemon PID</button>
                     <button onclick="clearTerminal()">Clear</button>
                 </div>
                 <div class="terminal-box" id="terminal-output">
                     <div class="term-line info">Performance_AllProject Root Console v2.0</div>
-                    <div class="term-line info">Ready for KernelSU commands...</div>
+                    <div class="term-line info">Async KernelSU Bridge Connected...</div>
                 </div>
                 <form class="terminal-input-bar" onsubmit="handleTerminalSubmit(event)">
-                    <span>$</span>
-                    <input type="text" id="terminal-input" placeholder="Type shell command here..." autocomplete="off">
+                    <span>#</span>
+                    <input type="text" id="terminal-input" placeholder="Ketik perintah root shell..." autocomplete="off">
                     <button type="submit"><i class="fa-solid fa-paper-plane"></i> Exec</button>
                 </form>
             </section>
         </div>
     </main>
 
-    <!-- Toast Notification -->
     <div id="toast" class="toast-notification">
         <i class="fa-solid fa-circle-check" id="toast-icon"></i>
         <span id="toast-message">Berhasil!</span>
